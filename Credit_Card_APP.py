@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn import tree
 from PIL import Image
-from keras.models import load_model
+from tensorflow import keras
 
 @st.cache(suppress_st_warning=True, show_spinner=False, allow_output_mutation=True)
 def long_running_function():
