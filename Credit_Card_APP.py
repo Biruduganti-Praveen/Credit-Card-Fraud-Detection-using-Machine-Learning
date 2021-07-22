@@ -2,7 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn import tree
-from matplotlib import image
+import urllib.request
+from PIL import Image
 
 try:
     @st.cache(suppress_st_warning=True, show_spinner=False, allow_output_mutation=True)
@@ -169,7 +170,9 @@ try:
         if smodel == "Decision Tree":
             do_plot = col4.button(("Decision Tree"))
             if do_plot:
-                img = image.imread('./Images/DecisionTreePlot.jpg')
+                urllib.request.urlretrieve('https://raw.githubusercontent.com/Biruduganti-Praveen/Credit-Card-Fraud-Detection-using-Machine-Learning/main/Images/DecisionTreePlot.jpg',
+                                    "DecisionTreePlot.jpg")
+                img = Image.open('DecisionTreePlot.jpg')
                 st.image(img, caption='Decision Tree Plot',use_column_width=True)
 
     elif choose == "View Dataset":
@@ -187,23 +190,33 @@ try:
 
     else:
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Accuracy of All Model</p>', unsafe_allow_html=True)
-        img = image.imread('./Images/accuracy.jpg')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/Biruduganti-Praveen/Credit-Card-Fraud-Detection-using-Machine-Learning/main/Images/accuracy.jpg',
+                                    "accuracy.jpg")
+        img = Image.open('accuracy.jpg')
         st.image(img, caption='Accuracy of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Recall of All Model</p>', unsafe_allow_html=True)
-        img = image.imread('./Images/recall.jpg')
+        urllib.request.urlretrieve("https://raw.githubusercontent.com/Biruduganti-Praveen/Credit-Card-Fraud-Detection-using-Machine-Learning/main/Images/recall.jpg"
+                                   ,"recall.jpg")
+        img = Image.open('recall.jpg')
         st.image(img, caption='Recall of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision of All Model</p>', unsafe_allow_html=True)
-        img = image.imread('./Images/precision.jpg')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/Biruduganti-Praveen/Credit-Card-Fraud-Detection-using-Machine-Learning/main/Images/precision.jpg',
+                                    "accuracy.jpg")
+        img = Image.open('accuracy.jpg')
         st.image(img, caption='Precision of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">F1 Score of All Model</p>', unsafe_allow_html=True)
-        img = image.imread('./Images/accuracy.jpg')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/Biruduganti-Praveen/Credit-Card-Fraud-Detection-using-Machine-Learning/main/Images/f1score.jpg',
+                                    "accuracy.jpg")
+        img = Image.open('accuracy.jpg')
         st.image(img, caption='F1 Score of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision-Recall Curve of All Model</p>', unsafe_allow_html=True)
-        img = image.imread('./Images/precision-recall.jpg')
+        urllib.request.urlretrieve('https://raw.githubusercontent.com/Biruduganti-Praveen/Credit-Card-Fraud-Detection-using-Machine-Learning/main/Images/precision-recall.jpg',
+                                    "accuracy.jpg")
+        img = Image.open('accuracy.jpg')
         st.image(img, caption='Precision-Recall Curve of All Models',use_column_width=True)
 
         st.write(''' 
