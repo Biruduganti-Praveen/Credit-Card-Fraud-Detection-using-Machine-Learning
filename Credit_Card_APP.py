@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn import tree
 from PIL import Image
-from tensorflow import keras
 
 @st.cache(suppress_st_warning=True, show_spinner=False, allow_output_mutation=True)
 def long_running_function():
@@ -57,7 +56,7 @@ choose = st.sidebar.selectbox(
 
 if choose == "Check Model Performance":
     smodel = st.selectbox("Select Model", ('Logistic Regression', 'Naive Bayes',
-                                           'SGDClassifier', 'Decision Tree', 'Random Forest', 'ANN'))
+                                           'SGDClassifier', 'Decision Tree', 'Random Forest'))
     _, _, col3 = st.beta_columns([3.5, 3.5, 3])
     col3.markdown(
         f'<p style="font-family:Times New Roman; font-style:italic;font-weight: bold; color:White; font-size: 15px;">Selected \"{smodel}\"</p>', unsafe_allow_html=True)
@@ -84,27 +83,7 @@ if choose == "Check Model Performance":
         elif smodel == "Random Forest":
             MODEL = joblib.load(
                 './ML_Credit_Card_Saved_Models/RandomForest.sav')
-        elif smodel == "ANN":
-            MODEL = keras.models.load_model('./ML_Credit_Card_Saved_Models/ANN')
-
-            y_pred = MODEL.predict(X_test)
-            y_pred = (y_pred > 0.5)
-
-            ANN_pred = pd.DataFrame(y_pred, columns=['fraudRisk'])
-            ANN_pred.loc[ANN_pred.fraudRisk == True, 'fraudRisk 01'] = 1
-            ANN_pred.loc[ANN_pred.fraudRisk == False, 'fraudRisk 01'] = 0
-            ANN_pred['fraudRisk 01'] = ANN_pred['fraudRisk 01'].astype(
-                np.int64)
-            ANN_pred = ANN_pred.drop("fraudRisk", axis=1)
-            pred = ANN_pred[['fraudRisk 01']]
-            accuracy = metrics.accuracy_score(pred, y_test[["fraudRisk"]])
-            (TN, FP), (FN, TP) = confusion_matrix(y_test[["fraudRisk"]], pred)
-            specificity = TN/(TN + FP)
-            f1_score = metrics.f1_score(y_test[["fraudRisk"]], pred)
-            recall = metrics.recall_score(y_test[["fraudRisk"]], pred)
-            precision = metrics.precision_score(y_test[["fraudRisk"]], pred)
-            return MODEL, pred, accuracy, specificity, f1_score, recall, precision
-        
+                
         pred = MODEL.predict(X_test)
         accuracy = metrics.accuracy_score(pred, y_test[["fraudRisk"]])
 
