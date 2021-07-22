@@ -191,7 +191,7 @@ try:
         st.image(image, caption='Accuracy of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Recall of All Model</p>', unsafe_allow_html=True)
-        image = image.imread('./Images/recall.jpg'')
+        image = image.imread('./Images/recall.jpg')
         st.image(image, caption='Recall of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision of All Model</p>', unsafe_allow_html=True)
