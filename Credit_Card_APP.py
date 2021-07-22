@@ -2,7 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn import tree
-from PIL import Image
+from matplotlib import image
+
 try:
     @st.cache(suppress_st_warning=True, show_spinner=False, allow_output_mutation=True)
     def long_running_function():
@@ -168,7 +169,7 @@ try:
         if smodel == "Decision Tree":
             do_plot = col4.button(("Decision Tree"))
             if do_plot:
-                image = Image.open('./Images/DecisionTreePlot.jpg')
+                image = image.imread('./Images/DecisionTreePlot.jpg')
                 st.image(image, caption='Decision Tree Plot',use_column_width=True)
 
     elif choose == "View Dataset":
@@ -186,23 +187,23 @@ try:
 
     else:
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Accuracy of All Model</p>', unsafe_allow_html=True)
-        image = Image.open('./Images/accuracy.jpg')
+        image = image.imread('./Images/accuracy.jpg')
         st.image(image, caption='Accuracy of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Recall of All Model</p>', unsafe_allow_html=True)
-        image = Image.open('./Images/recall.jpg')
+        image = image.imread('./Images/recall.jpg'')
         st.image(image, caption='Recall of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision of All Model</p>', unsafe_allow_html=True)
-        image = Image.open('./Images/precision.jpg')
+        image = image.imread('./Images/precision.jpg')
         st.image(image, caption='Precision of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">F1 Score of All Model</p>', unsafe_allow_html=True)
-        image = Image.open('./Images/f1score.jpg')
+        image = image.imread('./Images/accuracy.jpg')
         st.image(image, caption='F1 Score of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision-Recall Curve of All Model</p>', unsafe_allow_html=True)
-        image = Image.open('./Images/precision-recall.jpg')
+        image = image.imread('./Images/precision-recall.jpg')
         st.image(image, caption='Precision-Recall Curve of All Models',use_column_width=True)
 
         st.write(''' 
