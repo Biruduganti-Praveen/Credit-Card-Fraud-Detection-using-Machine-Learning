@@ -39,7 +39,7 @@ try:
     st.sidebar.write('''LinkedIn Profile:
     https://bit.ly/3z5jvvU''')
     st.sidebar.write('''Code URL:
-        https://bit.ly/3ijo6Uu''')
+        https://bit.ly/3kKlfa6''')
     st.sidebar.write('''
 
         ''')
@@ -169,8 +169,8 @@ try:
         if smodel == "Decision Tree":
             do_plot = col4.button(("Decision Tree"))
             if do_plot:
-                image = image.imread('./Images/DecisionTreePlot.jpg')
-                st.image(image, caption='Decision Tree Plot',use_column_width=True)
+                img = image.imread('./Images/DecisionTreePlot.jpg')
+                st.image(img, caption='Decision Tree Plot',use_column_width=True)
 
     elif choose == "View Dataset":
         st.write("Actual Dataset (First 20 Rows):               SHAPE: (10000000, 7)")
@@ -187,24 +187,24 @@ try:
 
     else:
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Accuracy of All Model</p>', unsafe_allow_html=True)
-        image = image.imread('./Images/accuracy.jpg')
-        st.image(image, caption='Accuracy of All Models',use_column_width=True)
+        img = image.imread('./Images/accuracy.jpg')
+        st.image(img, caption='Accuracy of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Recall of All Model</p>', unsafe_allow_html=True)
-        image = image.imread('./Images/recall.jpg')
-        st.image(image, caption='Recall of All Models',use_column_width=True)
+        img = image.imread('./Images/recall.jpg')
+        st.image(img, caption='Recall of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision of All Model</p>', unsafe_allow_html=True)
-        image = image.imread('./Images/precision.jpg')
-        st.image(image, caption='Precision of All Models',use_column_width=True)
+        img = image.imread('./Images/precision.jpg')
+        st.image(img, caption='Precision of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">F1 Score of All Model</p>', unsafe_allow_html=True)
-        image = image.imread('./Images/accuracy.jpg')
-        st.image(image, caption='F1 Score of All Models',use_column_width=True)
+        img = image.imread('./Images/accuracy.jpg')
+        st.image(img, caption='F1 Score of All Models',use_column_width=True)
 
         st.markdown('<p style="font-family:Times New Roman; font-style:italic;color:Yellow; font-size: 25px;">Precision-Recall Curve of All Model</p>', unsafe_allow_html=True)
-        image = image.imread('./Images/precision-recall.jpg')
-        st.image(image, caption='Precision-Recall Curve of All Models',use_column_width=True)
+        img = image.imread('./Images/precision-recall.jpg')
+        st.image(img, caption='Precision-Recall Curve of All Models',use_column_width=True)
 
         st.write(''' 
         ''')
