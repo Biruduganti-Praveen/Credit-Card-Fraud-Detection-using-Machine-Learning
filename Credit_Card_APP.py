@@ -157,7 +157,7 @@ try:
         if do_plot:
             fig = plt.figure(figsize=(15, 6))
             sns.countplot(pred)
-            plt.title('No. of Fraud and Non-Frauds')
+            plt.title('No. of Fraud and Non-Frauds predicted by the Model')
             st.pyplot(fig)
 
         do_plot = col3.button(("Confusion Matrix"))
