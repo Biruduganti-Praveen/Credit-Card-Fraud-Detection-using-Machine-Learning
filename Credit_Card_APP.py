@@ -224,7 +224,7 @@ try:
         st.write('''
 
         ''')
-        st.markdown('<p style=" color:orange;font-style:italic;;font-size: 15px;">**Specificity(Recall) is a measure of the proportion of actual positive cases that got predicted as positive (or true positive).</p>', unsafe_allow_html=True)
+        st.markdown('<p style=" color:orange;font-style:italic;;font-size: 15px;">**Sensitivity(Recall) is a measure of the proportion of actual positive cases that got predicted as positive (or true positive).</p>', unsafe_allow_html=True)
         st.markdown('<p style=" color:orange;font-style:italic;;font-size: 15px;">**Precision is the ratio of correctly predicted positive observations to the total predicted positive observations.</p>', unsafe_allow_html=True)
 except:
     st.title("ERROR 404")
