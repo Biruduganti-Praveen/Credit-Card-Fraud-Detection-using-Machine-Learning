@@ -141,16 +141,15 @@ try:
                     unsafe_allow_html=True)
 
         col1, col2, col3, col4 = st.beta_columns([4, 3, 4, 3])
-        do_plot = col1.button(("Precision Recall Curve"))
+        do_plot = col1.button(("ROC Curve"))
         if do_plot:
             fig = plt.figure(figsize=(15, 6))
-            precision, recall, _ = precision_recall_curve(
-                pred, np.array(y_test["fraudRisk"]))
-            plt.plot(recall, precision, color='orange', label='Logistic')
-            plt.xlabel('Recall')
-            plt.ylabel('Precision')
-            plt.title('Test Data Precision-Recall curve')
-            plt.legend()
+            auc = roc_auc_score(y_test["fraudRisk"], pred)
+            fpr, tpr, _ = roc_curve(y_test["fraudRisk"], pred)
+            plt.plot(fpr, tpr, marker='.',color='red')
+            plt.title(smodel.upper()+f', AUC: {auc:.4f}')
+            plt.xlabel('False Positive Rate')
+            plt.ylabel('True Positive Rate')
             st.pyplot(fig)
 
         do_plot = col2.button(("Fraud Count"))
