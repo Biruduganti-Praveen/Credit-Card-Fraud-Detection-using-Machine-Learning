@@ -4,6 +4,8 @@ from sklearn import metrics
 from sklearn import tree
 import urllib.request
 from PIL import Image
+from sklearn.metrics import roc_auc_score,roc_curve
+from sklearn.metrics import auc
 
 try:
     @st.cache(suppress_st_warning=True, show_spinner=False, allow_output_mutation=True)
