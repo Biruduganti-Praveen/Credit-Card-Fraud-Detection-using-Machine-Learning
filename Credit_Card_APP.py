@@ -168,6 +168,8 @@ try:
             fig = plt.figure()
             sns.heatmap(confusion_matrix(
                 y_test[["fraudRisk"]], pred), annot=True, fmt=".1f")
+            plt.xlabel('Predicted')
+            plt.ylabel('Actual')
             st.pyplot(fig)
 
         if smodel == "Decision Tree":
