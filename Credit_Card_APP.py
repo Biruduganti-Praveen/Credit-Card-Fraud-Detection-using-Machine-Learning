@@ -37,7 +37,7 @@ try:
     col1, col2, col3 = st.beta_columns([0.5, 3, 0.5])
     col2.title("Credit Card Fraud Detection")
     st.sidebar.markdown('<p style=" color:Red;font-style:italic;font-weight: bold;font-size: 15px;">Made By: &nbsp &nbsp<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"><i class="em em-point_down" aria-role="presentation" aria-label="WHITE DOWN POINTING BACKHAND INDEX"></i></p>', unsafe_allow_html=True)
-    st.sidebar.markdown('''<p style=" text-shadow: 0 0 2px #0802bf, 0 0 30px #ffde05;font-weight: bold;font-size: 30px;">Jaswanth Arya<br>Biruduganti Praveen</p>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<p style=" text-shadow: 0 0 2px #0802bf, 0 0 30px #ffde05;font-weight: bold;font-size: 30px;">Jaswanth Arya<br>Biruduganti Praveen </p>''', unsafe_allow_html=True)
     st.write(" ")
     st.sidebar.write('''Praveen's LinkedIn Profile:
     https://bit.ly/3z5jvvU''')
