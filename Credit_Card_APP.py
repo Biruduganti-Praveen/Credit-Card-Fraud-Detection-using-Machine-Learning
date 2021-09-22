@@ -75,11 +75,11 @@ try:
         creditlimit = st.text_input("Credit Limit: ",'Enter Credit Card Limit')
 
         if st.button(('Predict')):
-            if (gender != 'Select Gender' or state != 'Select State' or type(cardholder) != str or
-             type(balance) != str or type(numtrans) != str or type(numIntTrans) != str or type(creditlimit) != str): 
+            if (gender != 'Select Gender' and state != 'Select State' and type(cardholder) != str and
+             type(balance) != str and type(numtrans) != str and type(numIntTrans) != str and type(creditlimit) != str): 
                 gender = {'Male':1, 'Female':2}[gender]
                 
-                state_dict = {i:j for i,j in zip(states,[i for i in range(1,32)])}
+                state_dict = {i:j for i,j in zip(states[1:],[i for i in range(1,32)])}
                 state = state_dict[state]
 
                 model = joblib.load('./ML_Credit_Card_Saved_Models/LogisticReg.sav')
