@@ -61,25 +61,24 @@ try:
         "Choose Your Action", ('Predict Fraud', 'Check Model Performance', 'View Dataset', 'Model Comparison'))
 
     if choose == 'Predict Fraud':
-        gender = st.selectbox("Gender:", ('Male','Female'))
-        states = ('Andhra Pradesh','Arunachal Pradesh' ,'Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana',
+        gender = st.selectbox("Gender:", ('Select Gender','Male','Female'))
+        states = ('Select State','Andhra Pradesh','Arunachal Pradesh' ,'Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana',
                 'Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra',
                 'Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana',
                 'Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Chandigarh',
                 'National Capital Territory of Delhi','Jammu and Kashmir')
         state = st.selectbox("State", states)
-        cardholder = st.text_input("No. of Cards", 1)
-        balance = st.text_input("Balance:", 1000)
-        numtrans = st.text_input("No. of Transactions:", 1)
-        numIntTrans = st.text_input("No, of International Transactions:", 1)
-        creditlimit = st.text_input("Credit Limit: ",1)
+        cardholder = st.text_input("No. of Cards", 'Enter no. of Cards')
+        balance = st.text_input("Balance:", 'Enter balance')
+        numtrans = st.text_input("Transactions:", 'Enter No. of Transactions')
+        numIntTrans = st.text_input("International Transactions:", 'Enter no. of International Transactions')
+        creditlimit = st.text_input("Credit Limit: ",'Enter Credit Card Limit')
 
         if st.button(('Predict')):
-            if (gender != 'Select Gender' or state != 'Select State' or cardholder != 'Enter no. of Cards' or
-             balance != 'Enter balance' or numtrans != 'Enter No. of Transactions' or numIntTrans != 'Enter no. of International Transactions' or creditlimit != 'Enter Credit Card Limit'):
-            
+            if (gender != 'Select Gender' or state != 'Select State' or type(cardholder) != str or
+             type(balance) != str or type(numtrans) != str or type(numIntTrans) != str or type(creditlimit) != str): 
                 gender = {'Male':1, 'Female':2}[gender]
-
+                
                 state_dict = {i:j for i,j in zip(states,[i for i in range(1,32)])}
                 state = state_dict[state]
 
@@ -87,7 +86,7 @@ try:
                 ss = joblib.load('./ML_Credit_Card_Saved_Models/std_scaler.bin')
                 x = ss.transform([[gender, state, cardholder, balance,numtrans, numIntTrans, creditlimit]])
                 pred = model.predict(x.reshape(1,-1))
-
+                
                 if pred[0] == 0:
                     _, col3, _ = st.beta_columns([3.5, 3.5, 3])
                     col3.markdown(
@@ -100,7 +99,6 @@ try:
                 _, _, col3 = st.beta_columns([3, 3, 3.5])
                 col3.markdown(
                     '<p style="font-family:Times New Roman; font-style:italic;font-weight: bold; color:yellow; font-size: 18px;">**Please Enter data Correctly</p>', unsafe_allow_html=True)
-
     
     elif choose == "Check Model Performance":
         smodel = st.selectbox("Select Model", ('Logistic Regression', 'Naive Bayes',
