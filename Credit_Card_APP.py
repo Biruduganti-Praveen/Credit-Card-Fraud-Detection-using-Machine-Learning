@@ -260,7 +260,7 @@ try:
         img = Image.open('accuracy.jpg')
         st.image(img, caption='Precision-Recall Curve of All Models',use_column_width=True)
 
-        st.write(''' 
+        st.write('''  
         ''')
         st.write('''
 
