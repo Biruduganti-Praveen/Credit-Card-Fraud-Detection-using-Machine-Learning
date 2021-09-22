@@ -58,9 +58,45 @@ try:
 
 
     choose = st.sidebar.selectbox(
-        "Choose Your Action", ('Check Model Performance', 'View Dataset', 'Model Comparison'))
+        "Choose Your Action", ('Predict Fraud', 'Check Model Performance', 'View Dataset', 'Model Comparison'))
 
-    if choose == "Check Model Performance":
+    if choose == 'Predict Fraud':
+        gender = st.selectbox("Gender:", ('Male','Female'))
+        states = ('Andhra Pradesh','Arunachal Pradesh' ,'Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana',
+                'Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra',
+                'Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana',
+                'Tripura','Uttar Pradesh','Uttarakhand','West Bengal','Chandigarh',
+                'National Capital Territory of Delhi','Jammu and Kashmir')
+        state = st.selectbox("State", states)
+        cardholder = st.text_input("No. of Cards", 1)
+        balance = st.text_input("Balance:", 1000)
+        numtrans = st.text_input("No. of Transactions:", 1)
+        numIntTrans = st.text_input("No, of International Transactions:", 1)
+        creditlimit = st.text_input("Credit Limit: ",1)
+
+        if st.button(('Predict')):
+
+            gender = {'Male':1, 'Female':2}[gender]
+            
+            state_dict = {i:j for i,j in zip(states,[i for i in range(1,32)])}
+            state = state_dict[state]
+
+            model = joblib.load('./ML_Credit_Card_Saved_Models/LogisticReg.sav')
+            ss = joblib.load('./ML_Credit_Card_Saved_Models/std_scaler.bin')
+            x = ss.transform([[gender, state, cardholder, balance,numtrans, numIntTrans, creditlimit]])
+            pred = model.predict(x.reshape(1,-1))
+            
+            if pred[0] == 0:
+                _, col3, _ = st.beta_columns([3.5, 3.5, 3])
+                col3.markdown(
+                '<p style="text-shadow: 0 0 0px #FFFFFF, 0 0 40px #FFFFFF;font-family:Times New Roman; font-style:italic;font-weight: bold; color:lightgreen; font-size: 25px;">Genuine Transaction</p>', unsafe_allow_html=True)
+            elif pred[0] == 1:
+                _, col3, _ = st.beta_columns([3.5, 3.5, 3])
+                col3.markdown(
+                '<p style="text-shadow: 0 0 0px #FFFFFF, 0 0 40px #FFFFFF;font-family:Times New Roman; font-style:italic;font-weight: bold; color:red; font-size: 25px;">Fraud Transaction</p>', unsafe_allow_html=True)
+
+    
+    elif choose == "Check Model Performance":
         smodel = st.selectbox("Select Model", ('Logistic Regression', 'Naive Bayes',
                                                'SGDClassifier', 'Decision Tree', 'Random Forest'))
         _, _, col3 = st.beta_columns([3.5, 3.5, 3])
