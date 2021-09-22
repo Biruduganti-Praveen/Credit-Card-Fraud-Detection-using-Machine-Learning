@@ -75,25 +75,31 @@ try:
         creditlimit = st.text_input("Credit Limit: ",1)
 
         if st.button(('Predict')):
-
-            gender = {'Male':1, 'Female':2}[gender]
+            if (gender != 'Select Gender' or state != 'Select State' or cardholder != 'Enter no. of Cards' or
+             balance != 'Enter balance' or numtrans != 'Enter No. of Transactions' or numIntTrans != 'Enter no. of International Transactions' or creditlimit != 'Enter Credit Card Limit'):
             
-            state_dict = {i:j for i,j in zip(states,[i for i in range(1,32)])}
-            state = state_dict[state]
+                gender = {'Male':1, 'Female':2}[gender]
 
-            model = joblib.load('./ML_Credit_Card_Saved_Models/LogisticReg.sav')
-            ss = joblib.load('./ML_Credit_Card_Saved_Models/std_scaler.bin')
-            x = ss.transform([[gender, state, cardholder, balance,numtrans, numIntTrans, creditlimit]])
-            pred = model.predict(x.reshape(1,-1))
-            
-            if pred[0] == 0:
-                _, col3, _ = st.beta_columns([3.5, 3.5, 3])
+                state_dict = {i:j for i,j in zip(states,[i for i in range(1,32)])}
+                state = state_dict[state]
+
+                model = joblib.load('./ML_Credit_Card_Saved_Models/LogisticReg.sav')
+                ss = joblib.load('./ML_Credit_Card_Saved_Models/std_scaler.bin')
+                x = ss.transform([[gender, state, cardholder, balance,numtrans, numIntTrans, creditlimit]])
+                pred = model.predict(x.reshape(1,-1))
+
+                if pred[0] == 0:
+                    _, col3, _ = st.beta_columns([3.5, 3.5, 3])
+                    col3.markdown(
+                    '<p style="text-shadow: 0 0 0px #FFFFFF, 0 0 40px #FFFFFF;font-family:Times New Roman; font-style:italic;font-weight: bold; color:lightgreen; font-size: 25px;">Genuine Transaction</p>', unsafe_allow_html=True)
+                elif pred[0] == 1:
+                    _, col3, _ = st.beta_columns([3.5, 3.5, 3])
+                    col3.markdown(
+                    '<p style="text-shadow: 0 0 0px #FFFFFF, 0 0 40px #FFFFFF;font-family:Times New Roman; font-style:italic;font-weight: bold; color:red; font-size: 25px;">Fraud Transaction</p>', unsafe_allow_html=True)
+            else:
+                _, _, col3 = st.beta_columns([3, 3, 3.5])
                 col3.markdown(
-                '<p style="text-shadow: 0 0 0px #FFFFFF, 0 0 40px #FFFFFF;font-family:Times New Roman; font-style:italic;font-weight: bold; color:lightgreen; font-size: 25px;">Genuine Transaction</p>', unsafe_allow_html=True)
-            elif pred[0] == 1:
-                _, col3, _ = st.beta_columns([3.5, 3.5, 3])
-                col3.markdown(
-                '<p style="text-shadow: 0 0 0px #FFFFFF, 0 0 40px #FFFFFF;font-family:Times New Roman; font-style:italic;font-weight: bold; color:red; font-size: 25px;">Fraud Transaction</p>', unsafe_allow_html=True)
+                    '<p style="font-family:Times New Roman; font-style:italic;font-weight: bold; color:yellow; font-size: 18px;">**Please Enter data Correctly</p>', unsafe_allow_html=True)
 
     
     elif choose == "Check Model Performance":
